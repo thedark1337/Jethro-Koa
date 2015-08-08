@@ -1,0 +1,6 @@
+{
+    "extends": "thedark1337/esnext",
+    "ecmaFeatures": {
+        "modules": false
+    }
+}
