@@ -1,4 +1,4 @@
-# Jethro-Koa  [![Build Status](https://travis-ci.org/thedark1337/jethro-koa.svg?branch=master)](https://travis-ci.org/thedark1337/jethro-koa)
+# Jethro-Koa  [![Build Status](https://img.shields.io/travis/thedark1337/jethro-koa.svg)](https://travis-ci.org/thedark1337/jethro-koa)
 
 > Jethro Logger for KoaJS. Extends [Jethro](https://npmjs.com/package/jethro) to log [KoaJS](https://npmjs.com/package/koa) requests.
 
