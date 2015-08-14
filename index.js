@@ -5,6 +5,7 @@ const Counter = require('passthrough-counter');
 const humanize = require('humanize');
 const logger = require('jethro');
 const prettyMs = require('pretty-ms');
+const util = require('util');
 
 logger.set({
     quickStart: true,
@@ -23,11 +24,11 @@ function mainLog() {
     return function *log(next) {
         // request
         const start = new Date();
-
+        const IP = this.headers['x-forwarded-for'] || this.headers['X-Real-IP'] || this.connection.remoteAddress || '0.0.0.0';
         try {
             yield next;
         } catch (err) {
-            logger('error', 'KoaJS', this.method + ' ' + this.originalUrl + ' ' + this.status + ' ' + time(start));
+            logger('error', 'KoaJS', util.format('%s %s %s %s %s', IP, this.method, this.originalUrl, this.status, time(start), err.message));
             throw err;
         }
 
@@ -85,8 +86,7 @@ function mainLog() {
             } else {
                 responseLength = humanize.filesize(len);
             }
-
-            logger(level, 'KoaJS', status + ' ' + method + ' ' + ctx.originalUrl + ' ' + time(start) + ' ' + responseLength);
+            logger(level, 'KoaJS', util.format('%s %s %s %s %s', IP, status, method, ctx.originalUrl, time(start), responseLength));
         }
 
         // Logs when the response is finished or closed, whichever happens first.
