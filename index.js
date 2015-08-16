@@ -24,7 +24,7 @@ function mainLog() {
     return function *log(next) {
         // request
         const start = new Date();
-        const IP = this.headers['x-forwarded-for'] || this.headers['X-Real-IP'] || this.connection.remoteAddress || '0.0.0.0';
+        const IP = this.headers['x-forwarded-for'] || this.headers['X-Real-IP'] || this.ip || '0.0.0.0';
         try {
             yield next;
         } catch (err) {

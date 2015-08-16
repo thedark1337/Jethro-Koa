@@ -1,7 +1,7 @@
 {
   "name": "jethro-koa",
   "description": "Jethro Logging For Koa",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Thedark1337 <thedark1337@thedark1337.com> (https://thedark1337.com",
   "bugs": {
     "url": "https://github.com/thedark1337/Jethro-Koa/issues"
