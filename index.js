@@ -13,8 +13,7 @@ logger.set({
 });
 
 function time(start) {
-    const delta = new Date() - start;
-    return prettyMs(delta);
+    return prettyMs(new Date() - start);
 }
 
 function mainLog() {
@@ -81,7 +80,7 @@ function mainLog() {
 
             if ([204, 205, 304].indexOf(ctx.status) > -1) {
                 responseLength = '';
-            } else if (typeof len === 'undefined') {
+            } else if (len == null) {
                 responseLength = '-';
             } else {
                 responseLength = humanize.filesize(len);
