@@ -1,24 +1,25 @@
 {
   "name": "jethro-koa",
   "description": "Jethro Logging For Koa",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Thedark1337 <thedark1337@thedark1337.com> (https://thedark1337.com",
   "bugs": {
     "url": "https://github.com/thedark1337/Jethro-Koa/issues"
   },
   "dependencies": {
-    "chalk": "^1.1.0",
+    "chalk": "^1.1.1",
     "humanize": "0.0.9",
     "jethro": "^2.6.3",
     "passthrough-counter": "^1.0.0",
     "pretty-ms": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^1.1.0",
-    "eslint-config-thedark1337": "^0.1.2",
-    "eslint-config-xo": "^0.3.0",
-    "mocha": "^2.2.5",
-    "mocha-eslint": "github:thedark1337/mocha-eslint"
+    "babel-eslint": "^4.1.3",
+    "eslint-config-thedark1337": "^0.3.0",
+    "eslint-config-xo": "^0.6.0",
+    "eslint-plugin-babel": "^2.1.1",
+    "mocha": "^2.3.3",
+    "mocha-eslint": "^1.0.0"
   },
   "keywords": [
     "jethro",
