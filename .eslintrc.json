@@ -1,0 +1,9 @@
+{
+   "extends": "thedark1337",
+   "parserOptions": {
+       "ecmaVersion": 8
+   },
+   "rules": {
+    "prefer-destructuring": 0
+   }
+}
