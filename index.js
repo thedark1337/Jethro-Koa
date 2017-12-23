@@ -5,10 +5,10 @@ const Counter = require('passthrough-counter');
 const humanFormat = require('human-format');
 const Jethro = require('jethro');
 const logger = new Jethro();
-const httpServer = logger.HttpServer;
+const httpServer = Jethro.HttpServer;
 const util = require('util');
 
-logger.setTimeStampFormat(undefined, 'MMM DD HH:mm:ss');
+logger.setTimestampFormat(undefined, 'MMM DD HH:mm:ss');
 
 function time(start) {
     return humanFormat(new Date() - start, {
@@ -23,7 +23,7 @@ function KoaLogger() {
     return this;
 }
 
-util.inherit(KoaLogger, httpServer);
+util.inherits(KoaLogger, httpServer);
 
 KoaLogger.prototype.input = function() {
     return function log(ctx, next) {
