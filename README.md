@@ -18,11 +18,16 @@ Just run the command ` npm test ` and make sure it passes
 ``` javascript
 'use strict';
 
-const koa = require('koa');
-const app = module.exports = koa();
-const koaLogger = require('jethro-koa');
+const Koa = require('koa');
+const app = module.exports = new Koa();
+const Jethro = require('jethro');
+const logger = new Jethro();
+const KoaLogger = require('jethro-koa');
+const requestLogger = new KoaLogger();
 
-app.use(koaLogger());
+logger.addPlugin('koa', requestLogger);
+
+app.use(koaLogger.input());
 
 ```
 
