@@ -3,12 +3,12 @@
 const chalk = require('chalk');
 const Counter = require('passthrough-counter');
 const humanFormat = require('human-format');
-const logger = require('jethro');
+const Jethro = require('jethro');
+const logger = new Jethro();
+const httpServer = logger.HttpServer;
+const util = require('util');
 
-logger.set({
-    quickStart: true,
-    timeformat: 'MMM DD HH:mm:ss'
-});
+logger.setTimeStampFormat(undefined, 'MMM DD HH:mm:ss');
 
 function time(start) {
     return humanFormat(new Date() - start, {
@@ -17,7 +17,15 @@ function time(start) {
     });
 }
 
-function jethroLogger() {
+function KoaLogger() {
+    httpServer.call(this);
+
+    return this;
+}
+
+util.inherit(KoaLogger, httpServer);
+
+KoaLogger.prototype.input = function() {
     return function log(ctx, next) {
         const start = new Date();
         const IP = ctx.headers['x-forwarded-for'] || ctx.headers['X-Real-IP'] || ctx.ip || '0.0.0.0';
@@ -83,7 +91,7 @@ function jethroLogger() {
                         unit: 'B'
                     });
                 }
-                logger(level, 'KoaJS', `${IP} ${status} ${method} ${ctx.originalUrl} ${time(start)} ${responseLength}`);
+                logger[level]('KoaJS', `${IP} ${status} ${method} ${ctx.originalUrl} ${time(start)} ${responseLength}`);
             }
 
             // Logs when the response is finished or closed, whichever happens first.
@@ -97,5 +105,6 @@ function jethroLogger() {
                 logger('error', 'KoaJS', `${IP} ${ctx.method} ${ctx.originalUrl} ${ctx.status} ${time(start)} ${process.env.NODE_ENV === 'production' ? err.message : err.stack}`);
             });
     };
-}
-module.exports = jethroLogger;
+};
+
+module.exports = KoaLogger;
