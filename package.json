@@ -26,6 +26,9 @@
   ],
   "license": "LGPL-3.0",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/thedark1337/Jethro-Koa.git"
