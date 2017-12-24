@@ -57,13 +57,13 @@ KoaLogger.prototype.input = function() {
                 let status;
                 let level;
 
-                if (ctx.method === 'POST' || ctx.method === 'PUT') {
+                if (Object.is(ctx.method, 'POST') || Object.is(ctx.method, 'PUT')) {
                     level = 'info';
                     method = chalk.yellow(ctx.method);
-                } else if (ctx.method === 'DELETE') {
+                } else if (Object.is(ctx.method, 'DELETE')) {
                     level = 'warning';
                     method = chalk.red(ctx.method);
-                } else if (ctx.method === 'GET') {
+                } else if (Object.is(ctx.method, 'GET')) {
                     level = 'info';
                     method = chalk.green(ctx.method);
                 } else {
@@ -102,7 +102,7 @@ KoaLogger.prototype.input = function() {
             res.once('close', onclose);
         })
             .catch((err) => {
-                logger('error', 'KoaJS', `${IP} ${ctx.method} ${ctx.originalUrl} ${ctx.status} ${time(start)} ${process.env.NODE_ENV === 'production' ? err.message : err.stack}`);
+                logger.error('KoaJS', `${IP} ${ctx.method} ${ctx.originalUrl} ${ctx.status} ${time(start)} ${Object.is(process.env.NODE_ENV, 'production') ? err.message : err.stack}`);
             });
     };
 };
